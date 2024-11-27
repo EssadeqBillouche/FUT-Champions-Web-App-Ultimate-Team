@@ -3,10 +3,9 @@ body {
     margin: 0;
     min-width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
     background-image: url("body.jpeg");
     background-repeat: no-repeat;
     background-position: center;
@@ -14,13 +13,11 @@ body {
     min-height: 37.625rem;
     filter: blur(0px);
     background-position: center;
-
-
-
 }
 
 .matchContainer {
-    width: 70%;
+    padding: 50px;
+    width: 100%;
     height: 95%;
     background-image: url("championsleaguecourt2.png");
     background-repeat: no-repeat;
@@ -28,12 +25,12 @@ body {
     background-position: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     gap: 0px;
-
+    align-items: center;
     .attack{
-        width: 100%;
-        height: 18%;
+        width: 80%;
+        height: 25%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -41,29 +38,26 @@ body {
 
     .middle{
         width: 100%;
-        height: 18%;
+        height: 25%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        
     }
 
     .defence{
-        width: 100%;
-        height: 18%;
+        width: 80%;
+        height: 25%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-    
     }
 
     .goalkeeper{
-        width: 100%;
-        height: 18%;
+        width: 80%;
+        height: 25%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        
     }
 
 
@@ -92,9 +86,191 @@ body {
 main {
     display: flex;
     flex-direction: row;
-    height: 600px;
-    width: 90%;
+    height: 700px;
+    width: 100%;
     min-height: 31.813rem;
     align-content: center;
     justify-content: space-between;
+}
+
+/* CARDS */
+
+.playerCard {
+    width: 23vh;
+    height: 100%;
+    background-image: url("card2.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+
+    .CardTop {
+        height: 60%;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    
+    .topInfo {
+        gap: 5px;
+        background-color: #0000004a;
+        height: 65%;
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    
+    .imgPlayer {
+        height: 68%;
+        width: 57%;
+        background-image: url("https://cdn.sofifa.net/players/158/023/25_120.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    .playerName {
+        height: 10%;
+        width: 80%;
+        text-align: center;
+        /* display: flex; */
+        /* flex-direction: row; */
+        /* justify-content: center; */
+        
+        
+        
+        .playerN{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: xx-small;
+            color: white;
+            font-weight: bold;
+
+        }
+    }
+    
+    .CardBottom {
+        display: flex;
+        flex-direction: row;
+        height: 35%;
+        width: 80%;
+        justify-content: space-evenly;
+    }
+    
+    .CardBottom .CartInfoLeft {
+        width: 40%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+    }
+    
+    .CardBottom .CartInfoRight {
+        width: 40%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+    }
+    .postion{
+        height: 25px;
+        background-image: url("goldbadge.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        font-size: small;
+    }
+    
+}
+.score, .post, .country, .club {
+    text-align: center;
+    font-size: xx-small;
+    height: 25%;
+    width: 97%;
+    color: white;
+}
+.score{
+    font-size: small;
+    
+}
+.country{
+    height: 15%;
+    background-image: url("https://cdn.sofifa.net/flags/ar.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.club{
+    height: 28%;
+    background-image: url("https://cdn.sofifa.net/meta/team/239235/120.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pac, .sho, .pas{
+    text-align: center;
+    font-size: xx-small;
+    height: 25%;
+    width: 97%;
+    color: white;
+    height: 33%;
+    width: 80%;
+}
+
+.dri ,.def ,.phy{
+    text-align: center;
+    font-size: xx-small;
+    height: 25%;
+    width: 97%;
+    color: white;
+    height: 33%;
+    width: 80%;
 }
