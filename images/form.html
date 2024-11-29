@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="playerForm" >
+        <h3>Player Details</h3>
+        <div class="form-group">
+            <label for="playerName">Player Name</label>
+            <input type="text" id="playerName" placeholder="Enter Player Name" required />
+        </div>
+        <div class="form-group">
+            <label for="playerImage">Image URL</label>
+            <input type="url" id="playerImage" placeholder="Enter Image URL" required />
+        </div>
+        <div class="form-group">
+            <label for="Position_input">Position</label>
+            <select name="Position" id="Position_input">
+                <option value="GP">GK</option>
+                <option value="RB">RB</option>
+                <option value="CBR">CBR</option>
+                <option value="CBL">CBL</option>
+                <option value="RM">RM</option>
+                <option value="AM">AM</option>
+                <option value="DM">DM</option>
+                <option value="LM">LM</option>
+                <option value="RW">RW</option>
+                <option value="ST">ST</option>
+                <option value="LW">LW</option>
+            </select>
+        </div>
+        <div class="stats-grid">
+            <div>
+                <label for="playerPAC">PAC</label>
+                <input type="number" id="playerPAC" placeholder="PAC" min="0" max="99" required />
+            </div>
+            <div>
+                <label for="playerSHO">SHO</label>
+                <input type="number" id="playerSHO" placeholder="SHO" min="0" max="99" required />
+            </div>
+            <div>
+                <label for="playerPAS">PAS</label>
+                <input type="number" id="playerPAS" placeholder="PAS" min="0" max="99" required />
+            </div>
+            <div>
+                <label for="playerDRI">DRI</label>
+                <input type="number" id="playerDRI" placeholder="DRI" min="0" max="99" required />
+            </div>
+            <div>
+                <label for="playerDEF">DEF</label>
+                <input type="number" id="playerDEF" placeholder="DEF" min="0" max="99" required />
+            </div>
+            <div>
+                <label for="playerPHY">PHY</label>
+                <input type="number" id="playerPHY" placeholder="PHY" min="0" max="99" required />
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html>
