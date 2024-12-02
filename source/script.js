@@ -50,7 +50,11 @@ selectPosition.addEventListener('change', function () {
     if (selectedValue == 'GK') {
         regularPlayerForm.style.display = "none";
         GoalKeeperPlayerForm.style.display = "block"
-    } else {
+    } else if (selectedValue == 'None') {
+        regularPlayerForm.style.display = "none";
+        GoalKeeperPlayerForm.style.display = "none"
+    }
+    else {
         GoalKeeperPlayerForm.style.display = "none";
         regularPlayerForm.style.display = "block";
     }
@@ -72,7 +76,7 @@ function AddToArray(event) {
         PlayerRating: rating.value,
 
     }
-    if (player.position === 'GK') {
+    if (player.PlayerPosition == 'GK') {
         player.Details = {
             gooldiv: GKDIV.value,
             goolhan: GKHAN.value,
@@ -83,12 +87,12 @@ function AddToArray(event) {
         }
     } else {
         player.Details = {
-            Normalpace : pace.value,
-            Normalshooting : shooting.value,
-            Normalpassing : passing.value,
-            Normaldribbling : dribbling.value,
-            normaldefending : defending.value,
-            normalphysical : physical.value
+            Normalpace: pace.value,
+            Normalshooting: shooting.value,
+            Normalpassing: passing.value,
+            Normaldribbling: dribbling.value,
+            normaldefending: defending.value,
+            normalphysical: physical.value
         }
 
     }
@@ -100,7 +104,20 @@ function AddToArray(event) {
     console.log(allPlayers);
 }
 
+// FUNCTION TO ADD PLAYER TO THE FAILD
+
+// document.getElementsByClassName("divButton").addEventListener("onclick", AddPlayerByPosition())
+
+function AddPlayerByPosition(id) {
+    console.log(id);
+}
 
 
 
-
+fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/main/players.json')
+    .then(Resp => Resp.json())
+    .then(playerData => {
+        allPlayers = playerData.players;
+        console.log(allPlayers);
+    })
+    .catch(error => console.error('error', error)); 
