@@ -274,3 +274,116 @@ main {
     height: 33%;
     width: 80%;
 }
+
+/* popup */
+
+.containerPopUpADD {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.searchResults {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.resultsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.player-card {
+    flex: 0 1 calc(25% - 20px);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    min-width: 200px;
+}
+
+.player-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.player-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.player-details {
+    color: #666;
+    font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+    .player-card {
+        flex: 0 1 calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .search-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .player-card {
+        flex: 0 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .player-card {
+        flex: 0 1 100%;
+    }
+}
+
+
+
+/* <!-- <div class="playerCard">
+                    <div class="CardTop">
+                        <div class="topInfo">
+                            <div class="score">97</div>
+                            <div class="post">WR</div>
+                            <div class="country"></div>
+                            <div class="club"></div>
+                        </div>
+                        <div class="imgPlayer">
+
+                        </div>
+                    </div>
+                    <div class="playerName">
+                        <div class="playerN">Lionel Messi</div>
+                    </div>
+                    <div class="CardBottom">
+                        <div class="CartInfoLeft">
+                            <div class="pac">PAC : 92</div>
+                            <div class="sho">SHO : 82</div>
+                            <div class="pas">PAS : 73</div>
+                        </div>
+                        <div class="CartInfoRight">
+                            <div class="dri">DRI : 55</div>
+                            <div class="def">DEF : 89</div>
+                            <div class="phy">PHY : 81</div>
+                        </div>
+                    </div>
+                </div> --> */
