@@ -66,7 +66,7 @@ selectPosition.addEventListener('change', function () {
         regularPlayerForm.style.display = "block";
     }
 
-    console.log(selectedValue);
+    // console.log(selectedValue);
 });
 
 
@@ -105,45 +105,21 @@ function AddToArray(event) {
 
     }
     allPlayers.push(player);
-    console.log(player);
-    console.log(player.Details)
+    // console.log(player);
+    // console.log(player.Details)
     hiddenForm.style.display = "none";
     document.querySelector("form").reset();
-    console.log(allPlayers);
+    // console.log(allPlayers);
 }
-
-// FUNCTION TO ADD PLAYER TO THE FAILD
-
-// document.getElementsByClassName("divButton").addEventListener("onclick", AddPlayerByPosition())
-
-// function AddPlayerByPosition(id) {
-//     console.log(id);
-//     allPlayers.forEach(player => {
-//         if(player.position === id){
-//             playerListContainer.innerHTML += (` 
-//                 <div class="playerChangeCard">
-//                     <div class="change_icon"></div>
-//                     <img src="https://cdn.sofifa.net/players/158/023/25_120.png" class="playerImageForchange" alt="Player">
-//                     <div class="details">
-//                         <div class="name">Lionel Messi</div>
-//                         <div class="position">Wing Left</div>
-//                     </div>
-//                 `)
-//             console.log(player.position);
-//             console.log(player.PlayerName);
-
-//         }
-//     });
-// }
-
 function AddPlayerByPosition(id) { 
     console.log("Selected Position ID:", id);
 
     playerListContainer.innerHTML = ''
     allPlayers.forEach((player, index) => {
         if(player.position === id){
+            const escapedName = player.name.replace(/'/g, " ");
             playerListContainer.innerHTML += `
-                <div class="playerChangeCard" onclick="RepalcePlayer('${player.position}','${player.name}', '${index}')">
+                <div class="playerChangeCard" onclick="RepalcePlayer('${player.position}','${escapedName}', '${index}')">
                     <div class="change_icon"></div>
                     <img src="${player.photo}" class="playerImageForchange" alt="Player">
                     <div class="details">
@@ -152,8 +128,8 @@ function AddPlayerByPosition(id) {
                     </div>
                 </div>
             `;
-            console.log("Player Position:", player.position);
-            console.log("Player Name:", player.name);
+            // console.log("Player Position:", player.position);
+            // console.log("Player Name:", player.name);
 
         }
         
@@ -161,7 +137,7 @@ function AddPlayerByPosition(id) {
 }
 
 function RepalcePlayer(PositionOfThePlayer, NameAsId, index){
-    console.log("onclicl function ", NameAsId)
+    console.log("RepalcePlayer name ", NameAsId)
     console.log("onclicl function ", PositionOfThePlayer)
     console.log("onclicl fun ", index)
     
@@ -199,6 +175,6 @@ fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-A
     .then(Resp => Resp.json())
     .then(playerData => {
         allPlayers = playerData.players;
-        console.log(allPlayers);
+        // console.log(allPlayers);
     })
     .catch(error => console.error('error', error)); 
