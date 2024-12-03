@@ -107,19 +107,24 @@ function AddToArray(event) {
     allPlayers.push(player);
     // console.log(player);
     // console.log(player.Details)
+
     hiddenForm.style.display = "none";
     document.querySelector("form").reset();
-    // console.log(allPlayers);
+    console.log(allPlayers);
 }
 function AddPlayerByPosition(id) { 
+    let tempID = id;
+    if(id === 'CR' || id === 'LM' || id === 'CDM'){
+        id = 'CM'
+    }
     console.log("Selected Position ID:", id);
 
-    playerListContainer.innerHTML = ''
+    playerListContainer.innerHTML = '';
     allPlayers.forEach((player, index) => {
         if(player.position === id){
             const escapedName = player.name.replace(/'/g, " ");
             playerListContainer.innerHTML += `
-                <div class="playerChangeCard" onclick="RepalcePlayer('${player.position}','${escapedName}', '${index}')">
+                <div class="playerChangeCard" onclick="RepalcePlayer('${tempID}','${escapedName}', '${index}')">
                     <div class="change_icon"></div>
                     <img src="${player.photo}" class="playerImageForchange" alt="Player">
                     <div class="details">
@@ -130,7 +135,6 @@ function AddPlayerByPosition(id) {
             `;
             // console.log("Player Position:", player.position);
             // console.log("Player Name:", player.name);
-
         }
         
     });
@@ -138,11 +142,10 @@ function AddPlayerByPosition(id) {
 
 function RepalcePlayer(PositionOfThePlayer, NameAsId, index){
     console.log("RepalcePlayer name ", NameAsId)
-    console.log("onclicl function ", PositionOfThePlayer)
+    console.log("onclicl function ", PositionOfThePlayer)  
     console.log("onclicl fun ", index)
     
     document.getElementById(PositionOfThePlayer).innerHTML = `
-    
                     <div class="CardTop">
                         <div class="topInfo">
                             <div class="score">97</div>
@@ -171,10 +174,11 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index){
                     </div>
     `
 }
+
 fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/main/players.json')
     .then(Resp => Resp.json())
     .then(playerData => {
         allPlayers = playerData.players;
         // console.log(allPlayers);
     })
-    .catch(error => console.error('error', error)); 
+    .catch(error => console.error('error', error));
