@@ -169,7 +169,6 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
                                                 <div class="def">DEF : ${allPlayers[index].defending}</div>
                                                 <div class="phy">PHY : ${allPlayers[index].position}</div>
                                             </div>
-                                                <button class="deleteBtn">Delete</button>
                                             `
 
     }
@@ -202,7 +201,7 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
 function deleteFunction(nameID,positionOfPlayer){
     console.log("its Working")
     
-    PlayerAreadyAdded = PlayerAreadyAdded.filter(player => player =! nameID)
+    PlayerAreadyAdded = PlayerAreadyAdded.filter(player => player != nameID)
     document.getElementById(positionOfPlayer).innerHTML =` <div class="divButton"> <button onclick="AddPlayerByPosition('LW')"> <img id="addPlayerIcon"
     src="images/ADD.png" alt=""></button></div>  `;
 
@@ -211,6 +210,6 @@ fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-A
     .then(Resp => Resp.json())
     .then(playerData => {
         allPlayers = playerData.players;
-        // console.log(allPlayers);
+        console.log(allPlayers);
     })
     .catch(error => console.error('error', error));
