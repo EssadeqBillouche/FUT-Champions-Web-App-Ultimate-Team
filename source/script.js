@@ -76,43 +76,50 @@ document.getElementById("submitForm").addEventListener("click", AddToArray)
 function AddToArray(event) {
     event.preventDefault();
 
-    const player = {
-        name: nameInput.value,
-        photo: photoInput.value,
-        position: positionInput.value,
-        nationality: countryInput.value,
-        club: clubInput.value,
-        rating: ratingInput.value,
+    console.log("here is the postion", positionInput.value);
 
-    }
-    if (player.PlayerPosition == 'GK') {
-        player.Details = {
+    if (positionInput.value == 'GK') {
+
+        allPlayers.push( {
+            name: nameInput.value,
+            photo: photoInput.value,
+            position: positionInput.value,
+            nationality: countryInput.value,
+            club: clubInput.value,
+            rating: ratingInput.value,
             diving: divingInput.value,
             handling: handlingInput.value,
             kicking: kickingInput.value,
             reflexes: reflexesInput.value,
             speed: speedInput.value,
             position: positioningInput.value
-        }
+        });
     } else {
-        player.Details = {
+        allPlayers.push( {
+            name: nameInput.value,
+            photo: photoInput.value,
+            position: positionInput.value,
+            nationality: countryInput.value,
+            club: clubInput.value,
+            rating: ratingInput.value,
             pace: paceInput.value,
             shooting: shootingInput.value,
             passing: passingInput.value,
             dribbling: dribblingInput.value,
             defending: defendingInput.value,
             physical: physicalInput.value
-        }
-
+        });
     }
-    allPlayers.push(player);
-    // console.log(player);
-    // console.log(player.Details)
-
+    console.log("here is the length of array", allPlayers);
     hiddenForm.style.display = "none";
     document.querySelector("form").reset();
-    console.log(allPlayers);
 }
+
+// console.log(player);
+// console.log(player.Details)
+
+
+
 function AddPlayerByPosition(id) {
     playerListContainer.innerHTML = '';
 
@@ -172,7 +179,7 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
                                             `
 
     }
-// 
+    // 
 
     document.getElementById(PositionOfThePlayer).innerHTML = `
     <button class="delete" onclick="deleteFunction('${allPlayers[index].name}','${PositionOfThePlayer}')"></button>
@@ -193,16 +200,16 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
                     ${Details}
     `
     PlayerAreadyAdded.push(allPlayers[index].name);
-    console.log(PlayerAreadyAdded);
+    console.log("PlayerAreadyAdded : from RepalcePlayer() ", PlayerAreadyAdded);
 
     // }
 }
 
-function deleteFunction(nameID,positionOfPlayer){
-    console.log("its Working")
-    
+function deleteFunction(nameID, positionOfPlayer) {
+    console.log("delete function name id / positionOfPlayer", nameID, positionOfPlayer)
+
     PlayerAreadyAdded = PlayerAreadyAdded.filter(player => player != nameID)
-    document.getElementById(positionOfPlayer).innerHTML =` <div class="divButton"> <button onclick="AddPlayerByPosition('LW')"> <img id="addPlayerIcon"
+    document.getElementById(positionOfPlayer).innerHTML = ` <div class="divButton"> <button onclick="AddPlayerByPosition('LW')"> <img id="addPlayerIcon"
     src="images/ADD.png" alt=""></button></div>  `;
 
 }
@@ -211,5 +218,7 @@ fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-A
     .then(playerData => {
         allPlayers = playerData.players;
         console.log(allPlayers);
+        console.log("here is fetch :", allPlayers);
+
     })
     .catch(error => console.error('error', error));
