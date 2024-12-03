@@ -1,4 +1,6 @@
 body {
+    gap: 22px;
+    width: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
@@ -12,9 +14,8 @@ body {
     display: flex;
     justify-content: center;
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
-    align-items: stretch;
+    align-items: flex-end;
     background-image: url("/FUT-Champions-Web-App-Ultimate-Team/images/body.jpeg");
     background-repeat: no-repeat;
     background-position: center;
@@ -22,6 +23,8 @@ body {
     /* min-height: 37.625rem; */
     filter: blur(0px);
     background-position: center;
+    align-content: center;
+    flex-direction: column;
 }
 
 .matchContainer {
@@ -141,7 +144,7 @@ main {
 .topInfo {
     gap: 2px;
     background-color: #0000004a;
-    height: 80%;
+    height: 90%;
     width: 33%;
     display: flex;
     flex-direction: column;
@@ -295,7 +298,7 @@ header {
     color: white;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
     padding: 0 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font-family: Arial, sans-serif;
@@ -517,6 +520,7 @@ header .logo {
 
 @media only screen and (max-width: 768px) {
     main {
+        margin-left: 4px;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -535,7 +539,7 @@ header .logo {
     }
 
     .CardTop {
-        height: 61%;
+        height: 51%;
         width: 50%;
     }
 
@@ -638,3 +642,23 @@ header .logo {
     height: 100%;
     width: 100%;
 }
+.playerList .playerChangeCard .change_icon img{
+
+    width: auto;
+    height: 100%;
+}
+.delete
+{
+    background-image: url("/FUT-Champions-Web-App-Ultimate-Team/images/square.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    height: 11px;
+    width: 13px;
+    img{
+        height: 100%;
+        width: 100%;
+    }
+
+} 

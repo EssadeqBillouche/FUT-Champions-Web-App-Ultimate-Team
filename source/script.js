@@ -38,6 +38,7 @@ const positioningInput = document.querySelector("#POS");
 
 let x = 27;
 let allPlayers = [];
+let PlayerAreadyAdded = [];
 
 addPlayerButton.addEventListener("click", DisplayForm);
 function DisplayForm() {
@@ -74,7 +75,7 @@ selectPosition.addEventListener('change', function () {
 document.getElementById("submitForm").addEventListener("click", AddToArray)
 function AddToArray(event) {
     event.preventDefault();
-    
+
     const player = {
         name: nameInput.value,
         photo: photoInput.value,
@@ -112,20 +113,20 @@ function AddToArray(event) {
     document.querySelector("form").reset();
     console.log(allPlayers);
 }
-function AddPlayerByPosition(id) { 
+function AddPlayerByPosition(id) {
+    playerListContainer.innerHTML = '';
+
     let tempID = id;
-    if(id === 'CR' || id === 'LM' || id === 'CDM'){
+    if (id === 'CR' || id === 'LM' || id === 'CDM') {
         id = 'CM'
     }
-    console.log("Selected Position ID:", id);
 
-    playerListContainer.innerHTML = '';
     allPlayers.forEach((player, index) => {
-        if(player.position === id){
-            const escapedName = player.name.replace(/'/g, " ");
+        const playerFound = PlayerAreadyAdded.find(addedPlayer => addedPlayer === player.name);
+
+        if (player.position === id && playerFound === undefined) {
             playerListContainer.innerHTML += `
-                <div class="playerChangeCard" onclick="RepalcePlayer('${tempID}','${escapedName}', '${index}')">
-                    <div class="change_icon"></div>
+                <div class="playerChangeCard" onclick="RepalcePlayer('${tempID}', '${player.name}', ${index}) ">
                     <img src="${player.photo}" class="playerImageForchange" alt="Player">
                     <div class="details">
                         <div class="name">${player.name}</div>
@@ -133,20 +134,50 @@ function AddPlayerByPosition(id) {
                     </div>
                 </div>
             `;
-            // console.log("Player Position:", player.position);
-            // console.log("Player Name:", player.name);
         }
-        
     });
 }
 
-function RepalcePlayer(PositionOfThePlayer, NameAsId, index){
-    console.log("RepalcePlayer name ", NameAsId)
-    console.log("onclicl function ", PositionOfThePlayer)  
-    console.log("onclicl fun ", index)
-    
+
+function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
+    // console.log("RepalcePlayer name ", NameAsId)
+    // console.log("onclicl function ", PositionOfThePlayer)  
+    // console.log("onclicl fun ", index)
+
+
+    let Details = `<div class="CardBottom">
+                        <div class="CartInfoLeft">
+                            <div class="pac">PAC : ${allPlayers[index].passing}</div>
+                            <div class="sho">SHO : ${allPlayers[index].shooting}</div>
+                            <div class="pas">PAS : ${allPlayers[index].passing}</div>
+                        </div>
+                        <div class="CartInfoRight">
+                            <div class="dri">DRI : ${allPlayers[index].dribbling}</div>
+                            <div class="def">DEF : ${allPlayers[index].defending}</div>
+                            <div class="phy">PHY : ${allPlayers[index].physical}</div>
+                        </div>    
+`
+    if (PositionOfThePlayer == 'GK') {
+        Details = `<div class="CardBottom">
+                                            <div class="CartInfoLeft">
+                                                <div class="pac">div : ${allPlayers[index].diving}</div>
+                                                <div class="sho">SHO : ${allPlayers[index].handling}</div>
+                                                <div class="pas">PAS : ${allPlayers[index].speed}</div>
+                                            </div>
+                                            <div class="CartInfoRight">
+                                                <div class="dri">DRI : ${allPlayers[index].reflexes}</div>
+                                                <div class="def">DEF : ${allPlayers[index].defending}</div>
+                                                <div class="phy">PHY : ${allPlayers[index].position}</div>
+                                            </div>
+                                                <button class="deleteBtn">Delete</button>
+                                            `
+
+    }
+// 
+
     document.getElementById(PositionOfThePlayer).innerHTML = `
-                    <div class="CardTop">
+    <button class="delete" onclick="deleteFunction('${allPlayers[index].name}','${PositionOfThePlayer}')"></button>
+    <div class="CardTop" ondblclick="deleteFunction('${allPlayers[index].name}','${PositionOfThePlayer}')">
                         <div class="topInfo">
                             <div class="score">97</div>
                             <div class="post">${allPlayers[index].position}</div>
@@ -160,21 +191,22 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index){
                     <div class="playerName">
                         <div class="playerN">${allPlayers[index].name}</div>
                     </div>
-                    <div class="CardBottom">
-                        <div class="CartInfoLeft">
-                            <div class="pac">PAC : ${allPlayers[index].passing}</div>
-                            <div class="sho">SHO : ${allPlayers[index].shooting}</div>
-                            <div class="pas">PAS : ${allPlayers[index].passing}</div>
-                        </div>
-                        <div class="CartInfoRight">
-                            <div class="dri">DRI : ${allPlayers[index].dribbling}</div>
-                            <div class="def">DEF : ${allPlayers[index].defending}</div>
-                            <div class="phy">PHY : ${allPlayers[index].physical}</div>
-                        </div>
-                    </div>
+                    ${Details}
     `
+    PlayerAreadyAdded.push(allPlayers[index].name);
+    console.log(PlayerAreadyAdded);
+
+    // }
 }
 
+function deleteFunction(nameID,positionOfPlayer){
+    console.log("its Working")
+    
+    PlayerAreadyAdded = PlayerAreadyAdded.filter(player => player =! nameID)
+    document.getElementById(positionOfPlayer).innerHTML =` <div class="divButton"> <button onclick="AddPlayerByPosition('LW')"> <img id="addPlayerIcon"
+    src="images/ADD.png" alt=""></button></div>  `;
+
+}
 fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/main/players.json')
     .then(Resp => Resp.json())
     .then(playerData => {
