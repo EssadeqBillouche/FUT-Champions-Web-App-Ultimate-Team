@@ -37,3 +37,53 @@
     </div>
 </body>
 </html>
+
+
+
+    const nameRegex = /^[A-Za-z\s]+$/; // Nom : lettres et espaces uniquement
+    const ratingRegex = /^(100|[1-9][0-9]?)$/; // Note : entre 1 et 100
+    const photoRegex = /^(http|https):\/\/.+/; // Photo : URL valide
+    const flagRegex = /^(http|https):\/\/.+/; // Drapeau : URL valide
+    const logoRegex = /^(http|https):\/\/.+/; // Logo : URL valide
+    const statsRegex = /^(100|[1-9][0-9]?)$/; // Note : entre 1 et 100
+
+    // Vérification du nom du joueur
+    const playerName = document.getElementById('playerName').value;
+    if (!nameRegex.test(playerName)) {
+        alert("Le nom du joueur doit contenir uniquement des lettres et des espaces.");
+        return; // Sortir de la fonction si la validation échoue
+    }
+
+    // Vérification de la note
+    const playerRating = document.getElementById('playerRating').value;
+    if (!ratingRegex.test(playerRating)) {
+        alert("La note doit être un nombre entre 1 et 100.");
+        return;
+    }
+
+    // Vérification de l'URL de la photo
+    const playerPhoto = document.getElementById('playerPhoto').value;
+    if (!photoRegex.test(playerPhoto)) {
+        alert("L'URL de la photo doit être valide.");
+        return;
+    }
+
+    // Vérification de l'URL du drapeau
+    const playerFlag = document.getElementById('nationalitySelect').value;
+    if (!flagRegex.test(playerFlag)) {
+        alert("L'URL du drapeau doit être valide.");
+        return;
+    }
+
+    // Vérification de l'URL du logo
+    const playerLogo = document.getElementById('clubSelect').value;
+    if (!logoRegex.test(playerLogo)) {
+        alert("L'URL du logo doit être valide.");
+        return;
+    }
+
+    if (![diving, handling, kicking, reflexes, speed, positioning].every(stat => statsRegex.test(stat))) {
+        alert("Les statistiques doivent être des nombres.");
+        return;
+    }
+        

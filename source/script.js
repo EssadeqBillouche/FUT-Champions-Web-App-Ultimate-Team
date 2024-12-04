@@ -1,3 +1,4 @@
+
 const addPlayerButton = document.querySelector(".addPlayerButton");
 const hiddenForm = document.querySelector(".HiddenForm");
 const slectplayerToAdd = document.querySelector(".slectplayerToAdd")
@@ -34,7 +35,7 @@ const handlingInput = document.querySelector("#HAN");
 const kickingInput = document.querySelector("#KIC");
 const reflexesInput = document.querySelector("#REF");
 const speedInput = document.querySelector("#SPE");
-const positioningInput = document.querySelector("#POS");
+const positioninGKgInput = document.querySelector("#POS");
 
 let x = 27;
 let allPlayers = [];
@@ -43,15 +44,12 @@ let PlayerAreadyAdded = [];
 addPlayerButton.addEventListener("click", DisplayForm);
 function DisplayForm() {
     hiddenForm.style.display = "block";
-}
-
+};
 document.querySelector("#CloseForm").addEventListener("click", HideForm)
 function HideForm() {
     hiddenForm.style.display = "none";
 }
-
 const selectPosition = document.getElementById('Position_input');
-
 selectPosition.addEventListener('change', function () {
     const selectedValue = selectPosition.value;
 
@@ -70,16 +68,41 @@ selectPosition.addEventListener('change', function () {
     // console.log(selectedValue);
 });
 
-
-
 document.getElementById("submitForm").addEventListener("click", AddToArray)
 function AddToArray(event) {
     event.preventDefault();
+    const nameRegex = /^[A-Za-z\s]+$/; 
+    const ratingRegex = /^(100|[1-9][0-9]?)$/; 
+    const photoRegex = /^(http|https):\/\/.+/; 
+    const flagRegex = /^(http|https):\/\/.+/; 
+    const logoRegex = /^(http|https):\/\/.+/; 
+    const statsRegex = /^(100|[1-9][0-9]?)$/; 
 
-    console.log("here is the postion", positionInput.value);
-
+    if (!nameRegex.test(nameInput.value)) {
+        alert("Le nom du joueur doit contenir uniquement des lettres et des espaces.");
+        return; 
+    }
+    if (!ratingRegex.test(ratingInput.value)) {
+        alert("La note doit être un nombre entre 1 et 100.");
+        return;
+    }
+    if (!photoRegex.test(photoInput.value)) {
+        alert("L'URL de la photo doit être valide.");
+        return;
+    }
+    if (!flagRegex.test(countryInput.value)) {
+        alert("L'URL du drapeau doit être valide.");
+        return;
+    }
+    if (!logoRegex.test(clubInput.value)) {
+        alert("L'URL du logo doit être valide.");
+        return;
+    }
+    // if (![divingInput, handlingInput, kickingInput, reflexesInput, speedInput, positioning].every(stat => statsRegex.test(stat))) {
+    //     alert("Les statistiques doivent être des nombres.");
+    //     return;
+    // }
     if (positionInput.value == 'GK') {
-
         allPlayers.push( {
             name: nameInput.value,
             photo: photoInput.value,
@@ -92,7 +115,7 @@ function AddToArray(event) {
             kicking: kickingInput.value,
             reflexes: reflexesInput.value,
             speed: speedInput.value,
-            position: positioningInput.value
+            positioning: positioninGKgInput.value
         });
     } else {
         allPlayers.push( {
@@ -114,12 +137,7 @@ function AddToArray(event) {
     hiddenForm.style.display = "none";
     document.querySelector("form").reset();
 }
-
 // console.log(player);
-// console.log(player.Details)
-
-
-
 function AddPlayerByPosition(id) {
     playerListContainer.innerHTML = '';
 
@@ -144,14 +162,10 @@ function AddPlayerByPosition(id) {
         }
     });
 }
-
-
 function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
     // console.log("RepalcePlayer name ", NameAsId)
     // console.log("onclicl function ", PositionOfThePlayer)  
     // console.log("onclicl fun ", index)
-
-
     let Details = `<div class="CardBottom">
                         <div class="CartInfoLeft">
                             <div class="pac">PAC : ${allPlayers[index].passing}</div>
@@ -167,20 +181,18 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
     if (PositionOfThePlayer == 'GK') {
         Details = `<div class="CardBottom">
                                             <div class="CartInfoLeft">
-                                                <div class="pac">div : ${allPlayers[index].diving}</div>
+                                                <div class="pac">DIV : ${allPlayers[index].diving}</div>
                                                 <div class="sho">SHO : ${allPlayers[index].handling}</div>
                                                 <div class="pas">PAS : ${allPlayers[index].speed}</div>
                                             </div>
                                             <div class="CartInfoRight">
                                                 <div class="dri">DRI : ${allPlayers[index].reflexes}</div>
-                                                <div class="def">DEF : ${allPlayers[index].defending}</div>
-                                                <div class="phy">PHY : ${allPlayers[index].position}</div>
+                                                <div class="def">KIC : ${allPlayers[index].kicking}</div>
+                                                <div class="phy">PHY : ${allPlayers[index].positioning}</div>
                                             </div>
                                             `
 
     }
-    // 
-
     document.getElementById(PositionOfThePlayer).innerHTML = `
     <button class="delete" onclick="deleteFunction('${allPlayers[index].name}','${PositionOfThePlayer}')"></button>
     <div class="CardTop" ondblclick="deleteFunction('${allPlayers[index].name}','${PositionOfThePlayer}')">
@@ -201,8 +213,6 @@ function RepalcePlayer(PositionOfThePlayer, NameAsId, index) {
     `
     PlayerAreadyAdded.push(allPlayers[index].name);
     console.log("PlayerAreadyAdded : from RepalcePlayer() ", PlayerAreadyAdded);
-
-    // }
 }
 
 function deleteFunction(nameID, positionOfPlayer) {
@@ -211,7 +221,6 @@ function deleteFunction(nameID, positionOfPlayer) {
     PlayerAreadyAdded = PlayerAreadyAdded.filter(player => player != nameID)
     document.getElementById(positionOfPlayer).innerHTML = ` <div class="divButton"> <button onclick="AddPlayerByPosition('LW')"> <img id="addPlayerIcon"
     src="images/ADD.png" alt=""></button></div>  `;
-
 }
 fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/main/players.json')
     .then(Resp => Resp.json())
@@ -219,6 +228,5 @@ fetch('https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-A
         allPlayers = playerData.players;
         console.log(allPlayers);
         console.log("here is fetch :", allPlayers);
-
     })
     .catch(error => console.error('error', error));
